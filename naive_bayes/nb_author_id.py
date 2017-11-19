@@ -27,6 +27,21 @@ features_train, features_test, labels_train, labels_test = preprocess()
 #########################################################
 ### your code goes here ###
 
+from sklearn.naive_bayes import GaussianNB
+
+clf = GaussianNB()
+clf.fit(features_train, labels_train)
+
+def eval_accurary(pred, actual):
+    assert len(pred) == len(actual)
+    correct = 0
+    for p, a in zip(pred, actual):
+        if p == a:
+            correct += 1
+    return float(correct) / len(pred)
+
+print("training accurary: {}".format(eval_accurary(clf.predict(features_train), labels_train)))
+print("test accurary: {}".format(eval_accurary(clf.predict(features_test), labels_test)))
 
 #########################################################
 
