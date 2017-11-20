@@ -17,6 +17,4 @@ vectorizer = TfidfVectorizer(stop_words='english')
 vectorizer.fit_transform(word_data)
 
 print("vocabulary size is: %d" % len(vectorizer.vocabulary_))
-for k, v in vectorizer.vocabulary_.iteritems():
-    if v == 34597:
-        print("word number %d is: %s" % (v, k))
+print("word number 34597 is: %s" % vectorizer.get_feature_names()[34597])
