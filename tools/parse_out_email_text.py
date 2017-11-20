@@ -26,7 +26,7 @@ def parseOutText(f):
     words = ""
     if len(content) > 1:
         ### remove punctuation
-        # text_string = content[1].translate(string.maketrans("", ""), string.punctuation)
+        text_string = content[1].translate(string.maketrans("", ""), string.punctuation)
 
         ### project part 2: comment out the line below
         # words = text_string
@@ -34,23 +34,17 @@ def parseOutText(f):
         ### split the text string into individual words, stem each word,
         ### and append the stemmed word to words (make sure there's a single
         ### space between each stemmed word)
-        
-        # remove punctuation
-        for p in string.punctuation:
-            words = words.replace(p, '')
-
-        # stem
         stemmer = SnowballStemmer("english")
-        words = filter(lambda w: w != "", map(lambda w: stemmer.stem(w), words.split(" ")))
+        words = filter(lambda w: w not in ["", "\n"], map(lambda w: stemmer.stem(w), text_string.split()))
+        #print(words)
         words = " ".join(words)
-
 
     return words
 
-    
 
 def main():
     ff = open("../text_learning/test_email.txt", "r")
+    #ff = open("../maildir/jones-t/all_documents/4056.", "r")
     text = parseOutText(ff)
     print text
 
